@@ -1,0 +1,8 @@
+#!/bin/bash
+
+function _hosts_action_edit() {
+  sudo $EDITOR /etc/hosts
+}
+
+
+_hosts_action_edit
