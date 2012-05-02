@@ -24,10 +24,17 @@ _hosts_action_list() {
   return $?
 }
 
+_hosts_action_grep() {
+  _hosts_action_list | grep -E "$1"
+
+  return $?
+}
+
 
 case ${1:-edit} in
   edit) _hosts_action_edit;;
   list) _hosts_action_list;;
+  grep) _hosts_action_grep "$2";;
   *)    _hosts_usage;;
 esac
 
