@@ -1,28 +1,34 @@
 #!/bin/bash
 
 
-function _hosts_usage() {
+_hosts_usage() {
   cat <<EOF
 Usage: `basename $0` command
    edit   manage hosts file
    list   show all hosts
 
 EOF
+
+  return 1
 }
 
-function _hosts_action_edit() {
+_hosts_action_edit() {
   sudo $EDITOR /etc/hosts
+
+  return $?
 }
 
-function _hosts_action_list() {
+_hosts_action_list() {
   cat /etc/hosts | awk '/^[^#]/{print $0}'
+
+  return $?
 }
 
 
-readonly ACTION=${1:-edit}
-
-case $ACTION in
+case ${1:-edit} in
   edit) _hosts_action_edit;;
   list) _hosts_action_list;;
-  *) _hosts_usage;;
+  *)    _hosts_usage;;
 esac
+
+exit $?
