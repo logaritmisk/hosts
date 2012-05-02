@@ -3,7 +3,9 @@
 
 function _hosts_usage() {
   cat <<EOF
-usage: `basename $0`
+Usage: `basename $0` command
+   edit   manage hosts file
+   list   show all hosts
 
 EOF
 }
@@ -12,10 +14,15 @@ function _hosts_action_edit() {
   sudo $EDITOR /etc/hosts
 }
 
+function _hosts_action_list() {
+  cat /etc/hosts | awk '/^[^#]/{print $0}'
+}
+
 
 readonly ACTION=${1:-edit}
 
 case $ACTION in
   edit) _hosts_action_edit;;
+  list) _hosts_action_list;;
   *) _hosts_usage;;
 esac
