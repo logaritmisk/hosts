@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 function _hosts_usage() {
   cat <<EOF
 usage: `basename $0`
@@ -11,5 +12,10 @@ function _hosts_action_edit() {
   sudo $EDITOR /etc/hosts
 }
 
-_hosts_usage
-#_hosts_action_edit
+
+readonly ACTION=${1:-edit}
+
+case $ACTION in
+  edit) _hosts_action_edit;;
+  *) _hosts_usage;;
+esac
