@@ -6,6 +6,7 @@ _hosts_usage() {
 Usage: `basename $0` command
    edit   manage hosts file
    list   show all hosts
+   grep   use grep to find entries
 
 EOF
 
