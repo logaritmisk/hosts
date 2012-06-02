@@ -3,7 +3,7 @@
 
 _hosts_usage() {
   cat <<EOF
-Usage: `basename $0` command
+Usage: $(basename $0) command
    edit   manage hosts file
    list   show all hosts
    grep   use grep to find entries
